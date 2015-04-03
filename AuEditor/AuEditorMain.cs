@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace AuEditor
 {
-    public partial class Form1 : Form
+    public partial class AuEditorMain : Form
     {
-        public Form1()
+        public AuEditorMain()
         {
             InitializeComponent();
         }
