@@ -73,7 +73,7 @@ namespace AuEditor
             }
             if (numberOfBytes == 4)
                 return BitConverter.ToInt32(bytes, 0);
-            throw new ArgumentException("Invalid Number of Bytes value");
+            throw new ArgumentException("Invalid Number of Bytes");
         }
     }
 }
