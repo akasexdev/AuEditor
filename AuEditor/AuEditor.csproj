@@ -50,7 +50,11 @@
     <Compile Include="AuEditorMain.Designer.cs">
       <DependentUpon>AuEditorMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="AuEncoding.cs" />
+    <Compile Include="AuFileEncoding.cs" />
+    <Compile Include="AuFile.cs" />
+    <Compile Include="AuFileData.cs" />
+    <Compile Include="AuFileHeader.cs" />
+    <Compile Include="AuFileReader.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AuEditorMain.resx">

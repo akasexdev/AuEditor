@@ -1,6 +1,6 @@
 ﻿namespace AuEditor
 {
-    public enum AuEncoding : uint
+    public enum AuFileEncoding : uint
     {
         None = 0,
         Linear8Bit = 2,
