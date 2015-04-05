@@ -11,6 +11,7 @@ namespace AuEditor
 
         public AuFile ReadFile()
         {
+            // Read File Header
             var inputFile = new AuFile
             {
                 Header = new AuFileHeader
@@ -24,13 +25,19 @@ namespace AuEditor
                 }
             };
 
+            // Validate Encoding
+            if (!Enum.IsDefined(typeof(AuFileEncoding), inputFile.Header.Encoding))
+                inputFile.Header.Encoding = AuFileEncoding.None;
+
             if (!inputFile.Header.IsValid)
                 return inputFile;
 
-            var headerOffset = (int)inputFile.Header.HeaderSize - 24;
+            // Read Extra Header Data
+            var headerOffset = (int)(inputFile.Header.HeaderSize - AuFileHeader.AuFileMinHeaderSize);
             if (headerOffset > 0)
-                ReadBytes(headerOffset);
+                inputFile.Header.ExtraData = ReadBytes(headerOffset);
 
+            // Read Samples
             inputFile.Channels = new AuFileData((int)inputFile.Header.Channels, inputFile.Header.SamplesPerChannel);
             for (var i = 0; i < inputFile.Header.SamplesPerChannel; i++)
             {

@@ -14,6 +14,7 @@ namespace AuEditor
         public AuFileEncoding Encoding { get; set; }
         public uint SampleRate { get; set; }
         public uint Channels { get; set; }
+        public byte[] ExtraData { get; set; }
 
         public int BytesPerSample
         {
@@ -24,7 +25,7 @@ namespace AuEditor
         {
             get
             {
-                if (DataSize > 0)
+                if (DataSize > 0 && Channels > 0 && BytesPerSample > 0)
                     return ((int)DataSize / (int)(Channels * BytesPerSample));
                 return 0;
             }
@@ -34,7 +35,7 @@ namespace AuEditor
         {
             get
             {
-                if (DataSize > 0)
+                if (DataSize > 0 && Channels > 0 && BytesPerSample > 0)
                     return ((int)DataSize / (int)(SampleRate * Channels * BytesPerSample));
                 return 0;
             }

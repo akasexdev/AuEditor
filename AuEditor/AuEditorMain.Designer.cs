@@ -55,7 +55,10 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblCurrentFile = new System.Windows.Forms.ToolStripStatusLabel();
+            this.pnlWave = new System.Windows.Forms.Panel();
+            this.btnSaveFileAs = new System.Windows.Forms.Button();
             this.gbFileInfo.SuspendLayout();
+            this.gbWaveInfo.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -281,6 +284,7 @@
             // 
             // gbWaveInfo
             // 
+            this.gbWaveInfo.Controls.Add(this.pnlWave);
             this.gbWaveInfo.Location = new System.Drawing.Point(12, 200);
             this.gbWaveInfo.Name = "gbWaveInfo";
             this.gbWaveInfo.Size = new System.Drawing.Size(546, 184);
@@ -320,11 +324,31 @@
             this.lblCurrentFile.Size = new System.Drawing.Size(36, 17);
             this.lblCurrentFile.Text = "None";
             // 
+            // pnlWave
+            // 
+            this.pnlWave.BackColor = System.Drawing.Color.White;
+            this.pnlWave.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlWave.Location = new System.Drawing.Point(6, 19);
+            this.pnlWave.Name = "pnlWave";
+            this.pnlWave.Size = new System.Drawing.Size(534, 165);
+            this.pnlWave.TabIndex = 0;
+            // 
+            // btnSaveFileAs
+            // 
+            this.btnSaveFileAs.Location = new System.Drawing.Point(93, 12);
+            this.btnSaveFileAs.Name = "btnSaveFileAs";
+            this.btnSaveFileAs.Size = new System.Drawing.Size(75, 23);
+            this.btnSaveFileAs.TabIndex = 5;
+            this.btnSaveFileAs.Text = "Save File";
+            this.btnSaveFileAs.UseVisualStyleBackColor = true;
+            this.btnSaveFileAs.Click += new System.EventHandler(this.btnSaveFileAs_Click);
+            // 
             // AuEditorMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(577, 423);
+            this.Controls.Add(this.btnSaveFileAs);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.gbActions);
             this.Controls.Add(this.gbWaveInfo);
@@ -336,6 +360,7 @@
             this.Text = "Au Editor";
             this.gbFileInfo.ResumeLayout(false);
             this.gbFileInfo.PerformLayout();
+            this.gbWaveInfo.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -372,6 +397,8 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel lblCurrentFile;
+        private System.Windows.Forms.Panel pnlWave;
+        private System.Windows.Forms.Button btnSaveFileAs;
     }
 }
 

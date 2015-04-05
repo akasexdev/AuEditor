@@ -31,6 +31,20 @@ namespace AuEditor
             }
         }
 
+        private void SaveInputFile(string outputFilePath)
+        {
+            if (string.IsNullOrEmpty(outputFilePath))
+                return;
+
+            using (var outputStream = new FileStream(outputFilePath, FileMode.Create))
+            {
+                using (var writer = new AuFileWriter(outputStream))
+                {
+                    writer.WriteFile(_inputFile);
+                }
+            }
+        }
+
         private void ShowInputFileInfo()
         {
             if (_inputFile == null)
@@ -66,6 +80,12 @@ namespace AuEditor
                 lblIsValid.Text = _inputFile.Header.IsValid.ToString();
                 lblIsValid.ForeColor = _inputFile.Header.IsValid ? Color.Green : Color.Red;
             }
+            DrawWavesInfo();
+        }
+
+        private void DrawWavesInfo()
+        {
+
         }
 
         private void btnOpenFile_Click(object sender, System.EventArgs e)
@@ -74,11 +94,27 @@ namespace AuEditor
             {
                 dlg.Multiselect = false;
                 dlg.Filter = "AU File (*.au)|*.au";
-                dlg.Title = "Select Input file";
+                dlg.Title = "Open File";
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
                     LoadInputFile(dlg.FileName);
                     ShowInputFileInfo();
+                }
+            }
+        }
+
+        private void btnSaveFileAs_Click(object sender, System.EventArgs e)
+        {
+            if (_inputFile != null && _inputFile.Header.IsValid)
+            {
+                using (var dlg = new SaveFileDialog())
+                {
+                    dlg.Filter = "AU File (*.au)|*.au";
+                    dlg.Title = "Save File";
+                    if (dlg.ShowDialog() == DialogResult.OK)
+                    {
+                        SaveInputFile(dlg.FileName);
+                    }
                 }
             }
         }
