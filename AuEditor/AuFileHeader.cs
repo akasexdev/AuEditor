@@ -4,7 +4,8 @@ namespace AuEditor
 {
     public class AuFileHeader
     {
-        public const uint AuFileMagic = 0x2e736e64;
+        public const uint AuFileMagicNumber = 0x2e736e64;
+        public const uint AuFileMinHeaderSize = 24;
         public const uint AuUnknownSize = UInt32.MaxValue;
 
         public uint MagicNumber { get; set; }
@@ -36,6 +37,16 @@ namespace AuEditor
                 if (DataSize > 0)
                     return ((int)DataSize / (int)(SampleRate * Channels * BytesPerSample));
                 return 0;
+            }
+        }
+
+        public bool IsValid
+        {
+            get 
+            { 
+                return (MagicNumber == AuFileMagicNumber && HeaderSize >= AuFileMinHeaderSize
+                    && DataSize > 0 && Encoding != AuFileEncoding.None && SampleRate > 0
+                    && Channels > 0);
             }
         }
     }

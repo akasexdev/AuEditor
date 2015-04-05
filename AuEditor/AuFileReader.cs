@@ -11,34 +11,36 @@ namespace AuEditor
 
         public AuFile ReadFile()
         {
-            var header = new AuFileHeader
+            var inputFile = new AuFile
             {
-                MagicNumber = ReadBigEndianUInt32(),
-                HeaderSize = ReadBigEndianUInt32(),
-                DataSize = ReadBigEndianUInt32(),
-                Encoding = (AuFileEncoding)ReadBigEndianUInt32(),
-                SampleRate = ReadBigEndianUInt32(),
-                Channels = ReadBigEndianUInt32()
+                Header = new AuFileHeader
+                {
+                    MagicNumber = ReadBigEndianUInt32(),
+                    HeaderSize = ReadBigEndianUInt32(),
+                    DataSize = ReadBigEndianUInt32(),
+                    Encoding = (AuFileEncoding) ReadBigEndianUInt32(),
+                    SampleRate = ReadBigEndianUInt32(),
+                    Channels = ReadBigEndianUInt32()
+                }
             };
 
-            var headerOffset = (int)header.HeaderSize - 24;
+            if (!inputFile.Header.IsValid)
+                return inputFile;
+
+            var headerOffset = (int)inputFile.Header.HeaderSize - 24;
             if (headerOffset > 0)
                 ReadBytes(headerOffset);
 
-            var fileData = new AuFileData((int)header.Channels, header.SamplesPerChannel);
-            for (var i = 0; i < header.SamplesPerChannel; i++)
+            inputFile.Channels = new AuFileData((int)inputFile.Header.Channels, inputFile.Header.SamplesPerChannel);
+            for (var i = 0; i < inputFile.Header.SamplesPerChannel; i++)
             {
-                for (var j = 0; j < header.Channels; j++)
+                for (var j = 0; j < inputFile.Header.Channels; j++)
                 {
-                    fileData[j][i] = ReadBigEndianInt(header.BytesPerSample);
+                    inputFile.Channels[j][i] = ReadBigEndianInt(inputFile.Header.BytesPerSample);
                 }
             }
 
-            return new AuFile
-            {
-                Header = header,
-                Channels = fileData
-            };
+            return inputFile;
         }
 
         public uint ReadBigEndianUInt32()
