@@ -80,6 +80,18 @@ namespace AuEditor
                 lblIsValid.Text = _inputFile.Header.IsValid.ToString();
                 lblIsValid.ForeColor = _inputFile.Header.IsValid ? Color.Green : Color.Red;
             }
+
+            if (_inputFile == null || !_inputFile.Header.IsValid)
+            {
+                btnSaveFileAs.Enabled = false;
+                gbActions.Enabled = false;
+            }
+            else
+            {
+                btnSaveFileAs.Enabled = true;
+                gbActions.Enabled = true;
+            }
+
             DrawWavesInfo();
         }
 

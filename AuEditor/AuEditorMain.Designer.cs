@@ -51,11 +51,11 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.gbWaveInfo = new System.Windows.Forms.GroupBox();
+            this.pnlWave = new System.Windows.Forms.Panel();
             this.gbActions = new System.Windows.Forms.GroupBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblCurrentFile = new System.Windows.Forms.ToolStripStatusLabel();
-            this.pnlWave = new System.Windows.Forms.Panel();
             this.btnSaveFileAs = new System.Windows.Forms.Button();
             this.gbFileInfo.SuspendLayout();
             this.gbWaveInfo.SuspendLayout();
@@ -114,6 +114,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
+            this.label8.ForeColor = System.Drawing.SystemColors.Highlight;
             this.label8.Location = new System.Drawing.Point(6, 133);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(71, 13);
@@ -123,6 +124,7 @@
             // lblDuration
             // 
             this.lblDuration.AutoSize = true;
+            this.lblDuration.ForeColor = System.Drawing.SystemColors.Highlight;
             this.lblDuration.Location = new System.Drawing.Point(102, 120);
             this.lblDuration.Name = "lblDuration";
             this.lblDuration.Size = new System.Drawing.Size(13, 13);
@@ -132,6 +134,7 @@
             // lblSamplesPerChannel
             // 
             this.lblSamplesPerChannel.AutoSize = true;
+            this.lblSamplesPerChannel.ForeColor = System.Drawing.SystemColors.Highlight;
             this.lblSamplesPerChannel.Location = new System.Drawing.Point(102, 107);
             this.lblSamplesPerChannel.Name = "lblSamplesPerChannel";
             this.lblSamplesPerChannel.Size = new System.Drawing.Size(13, 13);
@@ -141,6 +144,7 @@
             // lblBytesPerSample
             // 
             this.lblBytesPerSample.AutoSize = true;
+            this.lblBytesPerSample.ForeColor = System.Drawing.SystemColors.Highlight;
             this.lblBytesPerSample.Location = new System.Drawing.Point(102, 94);
             this.lblBytesPerSample.Name = "lblBytesPerSample";
             this.lblBytesPerSample.Size = new System.Drawing.Size(13, 13);
@@ -204,6 +208,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
+            this.label12.ForeColor = System.Drawing.SystemColors.Highlight;
             this.label12.Location = new System.Drawing.Point(6, 120);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(50, 13);
@@ -213,6 +218,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
+            this.label14.ForeColor = System.Drawing.SystemColors.Highlight;
             this.label14.Location = new System.Drawing.Point(6, 107);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(94, 13);
@@ -222,6 +228,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.SystemColors.Highlight;
             this.label7.Location = new System.Drawing.Point(6, 94);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(76, 13);
@@ -292,8 +299,18 @@
             this.gbWaveInfo.TabStop = false;
             this.gbWaveInfo.Text = "Wave Info";
             // 
+            // pnlWave
+            // 
+            this.pnlWave.BackColor = System.Drawing.Color.White;
+            this.pnlWave.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlWave.Location = new System.Drawing.Point(6, 19);
+            this.pnlWave.Name = "pnlWave";
+            this.pnlWave.Size = new System.Drawing.Size(534, 165);
+            this.pnlWave.TabIndex = 0;
+            // 
             // gbActions
             // 
+            this.gbActions.Enabled = false;
             this.gbActions.Location = new System.Drawing.Point(228, 12);
             this.gbActions.Name = "gbActions";
             this.gbActions.Size = new System.Drawing.Size(330, 182);
@@ -324,17 +341,9 @@
             this.lblCurrentFile.Size = new System.Drawing.Size(36, 17);
             this.lblCurrentFile.Text = "None";
             // 
-            // pnlWave
-            // 
-            this.pnlWave.BackColor = System.Drawing.Color.White;
-            this.pnlWave.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlWave.Location = new System.Drawing.Point(6, 19);
-            this.pnlWave.Name = "pnlWave";
-            this.pnlWave.Size = new System.Drawing.Size(534, 165);
-            this.pnlWave.TabIndex = 0;
-            // 
             // btnSaveFileAs
             // 
+            this.btnSaveFileAs.Enabled = false;
             this.btnSaveFileAs.Location = new System.Drawing.Point(93, 12);
             this.btnSaveFileAs.Name = "btnSaveFileAs";
             this.btnSaveFileAs.Size = new System.Drawing.Size(75, 23);
