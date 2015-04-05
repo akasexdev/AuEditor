@@ -1,4 +1,7 @@
-﻿namespace AuEditor
+﻿using System;
+using System.Linq;
+
+namespace AuEditor
 {
     public class AuFile
     {

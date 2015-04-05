@@ -130,5 +130,11 @@ namespace AuEditor
         {
             AuFileRenderer.Render(pnlWave.Width, pnlWave.Height, _inputFile, e.Graphics);
         }
+
+        private void btnApplyFadeIn_Click(object sender, System.EventArgs e)
+        {
+            AudioHelper.FadeIn(_inputFile, AudioHelper.GetLinearValue, 0, 2, 0);
+            pnlWave.Refresh();
+        }
     }
 }
