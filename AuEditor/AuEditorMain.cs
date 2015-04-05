@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace AuEditor
@@ -91,13 +92,7 @@ namespace AuEditor
                 btnSaveFileAs.Enabled = true;
                 gbActions.Enabled = true;
             }
-
-            DrawWavesInfo();
-        }
-
-        private void DrawWavesInfo()
-        {
-
+            pnlWave.Refresh();
         }
 
         private void btnOpenFile_Click(object sender, System.EventArgs e)
@@ -129,6 +124,11 @@ namespace AuEditor
                     }
                 }
             }
+        }
+
+        private void pnlWave_Paint(object sender, PaintEventArgs e)
+        {
+            AuFileRenderer.Render(pnlWave.Width, pnlWave.Height, _inputFile, e.Graphics);
         }
     }
 }

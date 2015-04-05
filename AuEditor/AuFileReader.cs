@@ -60,20 +60,7 @@ namespace AuEditor
         public int ReadBigEndianInt(int numberOfBytes)
         {
             var bytes = ReadBytes(numberOfBytes);
-            Array.Reverse(bytes);
-
-            if (numberOfBytes == 1)
-                return bytes[0];
-            if (numberOfBytes == 2)
-                return BitConverter.ToInt16(bytes, 0);
-            if (numberOfBytes == 3)
-            {
-                var data = new byte[] { bytes[0], bytes[1], bytes[2], 0x00 };
-                return BitConverter.ToInt32(data, 0);
-            }
-            if (numberOfBytes == 4)
-                return BitConverter.ToInt32(bytes, 0);
-            throw new ArgumentException("Invalid Number of Bytes");
+            return ByteHelper.BigEndianToInt32(bytes, numberOfBytes);
         }
     }
 }

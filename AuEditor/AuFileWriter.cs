@@ -47,20 +47,8 @@ namespace AuEditor
 
         public void WriteBigEndianInt(int value, int numberOfBytes)
         {
-            if (numberOfBytes == 0 || numberOfBytes > 4)
-                throw new ArgumentException("Invalid Number of Bytes");
-
-            var bytes = BitConverter.GetBytes(value);
-            Array.Reverse(bytes);
-
-            if (numberOfBytes == 1)
-                Write(bytes[3]);
-            if (numberOfBytes == 2)
-                Write(new[] { bytes[2], bytes[3] });
-            if (numberOfBytes == 3)
-                Write(new[] { bytes[1], bytes[2], bytes[3] });
-            if (numberOfBytes == 4)
-                Write(bytes);
+            var bytes = ByteHelper.Int32ToBigEndian(value, numberOfBytes);
+            Write(bytes);
         }
     }
 }

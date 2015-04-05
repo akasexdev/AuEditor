@@ -50,7 +50,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.gbWaveInfo = new System.Windows.Forms.GroupBox();
             this.pnlWave = new System.Windows.Forms.Panel();
             this.gbActions = new System.Windows.Forms.GroupBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -58,7 +57,6 @@
             this.lblCurrentFile = new System.Windows.Forms.ToolStripStatusLabel();
             this.btnSaveFileAs = new System.Windows.Forms.Button();
             this.gbFileInfo.SuspendLayout();
-            this.gbWaveInfo.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -289,31 +287,22 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Magic Number:";
             // 
-            // gbWaveInfo
-            // 
-            this.gbWaveInfo.Controls.Add(this.pnlWave);
-            this.gbWaveInfo.Location = new System.Drawing.Point(12, 200);
-            this.gbWaveInfo.Name = "gbWaveInfo";
-            this.gbWaveInfo.Size = new System.Drawing.Size(546, 184);
-            this.gbWaveInfo.TabIndex = 2;
-            this.gbWaveInfo.TabStop = false;
-            this.gbWaveInfo.Text = "Wave Info";
-            // 
             // pnlWave
             // 
             this.pnlWave.BackColor = System.Drawing.Color.White;
             this.pnlWave.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlWave.Location = new System.Drawing.Point(6, 19);
+            this.pnlWave.Location = new System.Drawing.Point(12, 200);
             this.pnlWave.Name = "pnlWave";
-            this.pnlWave.Size = new System.Drawing.Size(534, 165);
+            this.pnlWave.Size = new System.Drawing.Size(800, 200);
             this.pnlWave.TabIndex = 0;
+            this.pnlWave.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlWave_Paint);
             // 
             // gbActions
             // 
             this.gbActions.Enabled = false;
             this.gbActions.Location = new System.Drawing.Point(228, 12);
             this.gbActions.Name = "gbActions";
-            this.gbActions.Size = new System.Drawing.Size(330, 182);
+            this.gbActions.Size = new System.Drawing.Size(582, 182);
             this.gbActions.TabIndex = 3;
             this.gbActions.TabStop = false;
             this.gbActions.Text = "Actions";
@@ -323,9 +312,10 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1,
             this.lblCurrentFile});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 401);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 411);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(577, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(822, 22);
+            this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 4;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -356,11 +346,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(577, 423);
+            this.ClientSize = new System.Drawing.Size(822, 433);
+            this.Controls.Add(this.pnlWave);
             this.Controls.Add(this.btnSaveFileAs);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.gbActions);
-            this.Controls.Add(this.gbWaveInfo);
             this.Controls.Add(this.gbFileInfo);
             this.Controls.Add(this.btnOpenFile);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -369,7 +359,6 @@
             this.Text = "Au Editor";
             this.gbFileInfo.ResumeLayout(false);
             this.gbFileInfo.PerformLayout();
-            this.gbWaveInfo.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -401,7 +390,6 @@
         private System.Windows.Forms.Label lblMagicNumber;
         private System.Windows.Forms.Label lblIsValid;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.GroupBox gbWaveInfo;
         private System.Windows.Forms.GroupBox gbActions;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
