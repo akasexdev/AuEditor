@@ -65,8 +65,6 @@ namespace AuEditor
                 lblDuration.Text = "0";
                 lblIsValid.Text = "False";
                 lblIsValid.ForeColor = Color.Red;
-                lblCurrentEffect.Text = "None";
-                lblEffectOption.Text = "Linear";
             }
             else
             {
@@ -84,8 +82,6 @@ namespace AuEditor
                 lblDuration.Text = _inputFile.Header.Duration.ToString();
                 lblIsValid.Text = _inputFile.Header.IsValid.ToString();
                 lblIsValid.ForeColor = _inputFile.Header.IsValid ? Color.Green : Color.Red;
-                lblCurrentEffect.Text = "Fade In";
-                lblEffectOption.Text = "Linear";
             }
 
             if (_inputFile == null || !_inputFile.Header.IsValid)
@@ -158,7 +154,6 @@ namespace AuEditor
             _effectKind = "FadeIn";
             nuStart.Value = 0;
             nuDuration.Value = 1;
-            lblCurrentEffect.Text = "Fade In";
         }
 
         private void rbFadeOut_CheckedChanged(object sender, System.EventArgs e)
@@ -166,7 +161,6 @@ namespace AuEditor
             _effectKind = "FadeOut";
             nuStart.Value = 0;
             nuDuration.Value = 1;
-            lblCurrentEffect.Text = "Fade Out";
         }
 
         private void rbCrossFade_CheckedChanged(object sender, System.EventArgs e)
@@ -174,19 +168,16 @@ namespace AuEditor
             _effectKind = "CrossFade";
             nuStart.Value = 0;
             nuDuration.Value = 1;
-            lblCurrentEffect.Text = "CrossFade";
         }
 
         private void rbLinear_CheckedChanged(object sender, System.EventArgs e)
         {
             _useLogarithmic = false;
-            lblEffectOption.Text = "Linear";
         }
 
         private void rbLogarithmic_CheckedChanged(object sender, System.EventArgs e)
         {
             _useLogarithmic = true;
-            lblEffectOption.Text = "Logarithmic";
         }
 
         private void btnApplyEffect_Click(object sender, System.EventArgs e)
@@ -205,28 +196,28 @@ namespace AuEditor
             if (_effectKind == "FadeIn")
             {
                 if (_useLogarithmic)
-                    result = AudioHelper.FadeIn(_inputFile, AudioHelper.GetLogarithmicValue,
+                    result = AudioHelper.FadeIn(_inputFile, AudioHelper.LogarithmicInterpolation,
                         startPosition, duration);
                 else
-                    result = AudioHelper.FadeIn(_inputFile, AudioHelper.GetLinearValue,
+                    result = AudioHelper.FadeIn(_inputFile, AudioHelper.LinearInterpolation,
                         startPosition, duration);
             }
             else if (_effectKind == "FadeOut")
             {
                 if (_useLogarithmic)
-                    result = AudioHelper.FadeOut(_inputFile, AudioHelper.GetLogarithmicValue,
+                    result = AudioHelper.FadeOut(_inputFile, AudioHelper.LogarithmicInterpolation,
                         startPosition, duration);
                 else
-                    result = AudioHelper.FadeOut(_inputFile, AudioHelper.GetLinearValue,
+                    result = AudioHelper.FadeOut(_inputFile, AudioHelper.LinearInterpolation,
                         startPosition, duration);
             }
             else if (_effectKind == "CrossFade")
             {
                 if (_useLogarithmic)
-                    result = AudioHelper.CrossFade(_inputFile, AudioHelper.GetLogarithmicValue,
+                    result = AudioHelper.CrossFade(_inputFile, AudioHelper.LogarithmicInterpolation,
                         startPosition, duration);
                 else
-                    result = AudioHelper.CrossFade(_inputFile, AudioHelper.GetLinearValue,
+                    result = AudioHelper.CrossFade(_inputFile, AudioHelper.LinearInterpolation,
                         startPosition, duration);
             }
 

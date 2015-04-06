@@ -59,10 +59,6 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblCurrentFile = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.lblCurrentEffect = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.lblEffectOption = new System.Windows.Forms.ToolStripStatusLabel();
             this.btnSaveFileAs = new System.Windows.Forms.Button();
             this.gbEffectOptions = new System.Windows.Forms.GroupBox();
             this.btnSetMaxDuration = new System.Windows.Forms.Button();
@@ -382,11 +378,7 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1,
-            this.lblCurrentFile,
-            this.toolStripStatusLabel2,
-            this.lblCurrentEffect,
-            this.toolStripStatusLabel3,
-            this.lblEffectOption});
+            this.lblCurrentFile});
             this.statusStrip1.Location = new System.Drawing.Point(0, 411);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(498, 22);
@@ -397,38 +389,14 @@
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(28, 17);
-            this.toolStripStatusLabel1.Text = "File:";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(71, 17);
+            this.toolStripStatusLabel1.Text = "Current File:";
             // 
             // lblCurrentFile
             // 
             this.lblCurrentFile.Name = "lblCurrentFile";
             this.lblCurrentFile.Size = new System.Drawing.Size(36, 17);
             this.lblCurrentFile.Text = "None";
-            // 
-            // toolStripStatusLabel2
-            // 
-            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(40, 17);
-            this.toolStripStatusLabel2.Text = "Effect:";
-            // 
-            // lblCurrentEffect
-            // 
-            this.lblCurrentEffect.Name = "lblCurrentEffect";
-            this.lblCurrentEffect.Size = new System.Drawing.Size(36, 17);
-            this.lblCurrentEffect.Text = "None";
-            // 
-            // toolStripStatusLabel3
-            // 
-            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
-            this.toolStripStatusLabel3.Size = new System.Drawing.Size(47, 17);
-            this.toolStripStatusLabel3.Text = "Option:";
-            // 
-            // lblEffectOption
-            // 
-            this.lblEffectOption.Name = "lblEffectOption";
-            this.lblEffectOption.Size = new System.Drawing.Size(39, 17);
-            this.lblEffectOption.Text = "Linear";
             // 
             // btnSaveFileAs
             // 
@@ -643,10 +611,6 @@
         private System.Windows.Forms.RadioButton rbFadeIn;
         private System.Windows.Forms.RadioButton rbCrossFade;
         private System.Windows.Forms.Button btnPlayAudio;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
-        private System.Windows.Forms.ToolStripStatusLabel lblCurrentEffect;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
-        private System.Windows.Forms.ToolStripStatusLabel lblEffectOption;
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.Button btnSetMaxDuration;
     }
