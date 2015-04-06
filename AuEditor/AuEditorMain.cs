@@ -8,6 +8,8 @@ namespace AuEditor
     public partial class AuEditorMain : Form
     {
         private AuFile _inputFile;
+        private bool _useLogarithmic = false;
+        private string _effectKind = "FadeIn";
 
         public AuEditorMain()
         {
@@ -63,6 +65,8 @@ namespace AuEditor
                 lblDuration.Text = "0";
                 lblIsValid.Text = "False";
                 lblIsValid.ForeColor = Color.Red;
+                lblCurrentEffect.Text = "None";
+                lblEffectOption.Text = "Linear";
             }
             else
             {
@@ -80,18 +84,36 @@ namespace AuEditor
                 lblDuration.Text = _inputFile.Header.Duration.ToString();
                 lblIsValid.Text = _inputFile.Header.IsValid.ToString();
                 lblIsValid.ForeColor = _inputFile.Header.IsValid ? Color.Green : Color.Red;
+                lblCurrentEffect.Text = "Fade In";
+                lblEffectOption.Text = "Linear";
             }
 
             if (_inputFile == null || !_inputFile.Header.IsValid)
             {
                 btnSaveFileAs.Enabled = false;
-                gbActions.Enabled = false;
+                gbEffects.Enabled = false;
+                gbEffectOptions.Enabled = false;
+                btnApplyEffect.Enabled = false;
+                btnPlayAudio.Enabled = false;
             }
             else
             {
                 btnSaveFileAs.Enabled = true;
-                gbActions.Enabled = true;
+                gbEffects.Enabled = true;
+                gbEffectOptions.Enabled = true;
+                btnApplyEffect.Enabled = true;
+                btnPlayAudio.Enabled = true;
+                nuStart.Maximum = _inputFile.Header.Duration;
+                nuDuration.Maximum = _inputFile.Header.Duration;
             }
+            
+            rbFadeIn.Checked = true;
+            rbLinear.Checked = true;
+            nuStart.Value = 0;
+            nuDuration.Value = 1;
+            lblStatus.ForeColor = Color.Green;
+            lblStatus.Text = "Not Applied";
+
             pnlWave.Refresh();
         }
 
@@ -131,9 +153,85 @@ namespace AuEditor
             AuFileRenderer.Render(pnlWave.Width, pnlWave.Height, _inputFile, e.Graphics);
         }
 
-        private void btnApplyFadeIn_Click(object sender, System.EventArgs e)
+        private void rbFadeIn_CheckedChanged(object sender, System.EventArgs e)
         {
-            AudioHelper.FadeIn(_inputFile, AudioHelper.GetLinearValue, 0, 2, 0);
+            _effectKind = "FadeIn";
+            nuStart.Value = 0;
+            nuDuration.Value = 1;
+            lblCurrentEffect.Text = "Fade In";
+        }
+
+        private void rbFadeOut_CheckedChanged(object sender, System.EventArgs e)
+        {
+            _effectKind = "FadeOut";
+            nuStart.Value = 0;
+            nuDuration.Value = 1;
+            lblCurrentEffect.Text = "Fade Out";
+        }
+
+        private void rbCrossFade_CheckedChanged(object sender, System.EventArgs e)
+        {
+            _effectKind = "CrossFade";
+            nuStart.Value = 0;
+            nuDuration.Value = 1;
+            lblCurrentEffect.Text = "CrossFade";
+        }
+
+        private void rbLinear_CheckedChanged(object sender, System.EventArgs e)
+        {
+            _useLogarithmic = false;
+            lblEffectOption.Text = "Linear";
+        }
+
+        private void rbLogarithmic_CheckedChanged(object sender, System.EventArgs e)
+        {
+            _useLogarithmic = true;
+            lblEffectOption.Text = "Logarithmic";
+        }
+
+        private void btnApplyEffect_Click(object sender, System.EventArgs e)
+        {
+            var startPosition = (int) nuStart.Value;
+            var duration = (int) nuDuration.Value;
+
+            if (startPosition + duration > _inputFile.Header.Duration || duration == 0)
+            {
+                lblStatus.ForeColor = Color.Red;
+                lblStatus.Text = "Length of the effect is bigger than the file duration. Please, validate Start Time and Duration parameters.";
+                return;
+            }
+
+            if (_effectKind == "FadeIn")
+            {
+                if (_useLogarithmic)
+                    AudioHelper.FadeIn(_inputFile, AudioHelper.GetLogarithmicValue,
+                        startPosition, duration);
+                else
+                    AudioHelper.FadeIn(_inputFile, AudioHelper.GetLinearValue,
+                        startPosition, duration);
+            }
+            else if (_effectKind == "FadeOut")
+            {
+                if (_useLogarithmic)
+                    AudioHelper.FadeOut(_inputFile, AudioHelper.GetLogarithmicValue,
+                        startPosition, duration);
+                else
+                    AudioHelper.FadeOut(_inputFile, AudioHelper.GetLinearValue,
+                        startPosition, duration);
+            }
+            else if (_effectKind == "CrossFade")
+            {
+                if (_useLogarithmic)
+                    AudioHelper.CrossFade(_inputFile, AudioHelper.GetLogarithmicValue,
+                        startPosition, duration);
+                else
+                    AudioHelper.CrossFade(_inputFile, AudioHelper.GetLinearValue,
+                        startPosition, duration);
+            }
+
+            lblStatus.ForeColor = Color.Green;
+            lblStatus.Text = string.Format("{0} Effect was applied", _effectKind);
+            
             pnlWave.Refresh();
         }
     }

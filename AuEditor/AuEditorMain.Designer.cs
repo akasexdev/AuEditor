@@ -51,31 +51,35 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.pnlWave = new System.Windows.Forms.Panel();
-            this.gbActions = new System.Windows.Forms.GroupBox();
-            this.btnApplyFadeIn = new System.Windows.Forms.Button();
+            this.gbEffects = new System.Windows.Forms.GroupBox();
+            this.rbCrossFade = new System.Windows.Forms.RadioButton();
+            this.rbFadeIn = new System.Windows.Forms.RadioButton();
+            this.rbFadeOut = new System.Windows.Forms.RadioButton();
+            this.btnApplyEffect = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblCurrentFile = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblCurrentEffect = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblEffectOption = new System.Windows.Forms.ToolStripStatusLabel();
             this.btnSaveFileAs = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.gbEffectOptions = new System.Windows.Forms.GroupBox();
+            this.lblStatus = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
+            this.rbLogarithmic = new System.Windows.Forms.RadioButton();
+            this.rbLinear = new System.Windows.Forms.RadioButton();
             this.label11 = new System.Windows.Forms.Label();
-            this.radioButton5 = new System.Windows.Forms.RadioButton();
-            this.button1 = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.nuDuration = new System.Windows.Forms.NumericUpDown();
+            this.nuStart = new System.Windows.Forms.NumericUpDown();
+            this.btnPlayAudio = new System.Windows.Forms.Button();
             this.gbFileInfo.SuspendLayout();
-            this.gbActions.SuspendLayout();
+            this.gbEffects.SuspendLayout();
             this.statusStrip1.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+            this.gbEffectOptions.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nuDuration)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nuStart)).BeginInit();
             this.SuspendLayout();
             // 
             // btnOpenFile
@@ -112,7 +116,7 @@
             this.gbFileInfo.Controls.Add(this.label1);
             this.gbFileInfo.Location = new System.Drawing.Point(12, 41);
             this.gbFileInfo.Name = "gbFileInfo";
-            this.gbFileInfo.Size = new System.Drawing.Size(210, 153);
+            this.gbFileInfo.Size = new System.Drawing.Size(237, 153);
             this.gbFileInfo.TabIndex = 1;
             this.gbFileInfo.TabStop = false;
             this.gbFileInfo.Text = "File Info";
@@ -311,41 +315,81 @@
             this.pnlWave.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlWave.Location = new System.Drawing.Point(12, 200);
             this.pnlWave.Name = "pnlWave";
-            this.pnlWave.Size = new System.Drawing.Size(460, 200);
+            this.pnlWave.Size = new System.Drawing.Size(472, 200);
             this.pnlWave.TabIndex = 0;
             this.pnlWave.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlWave_Paint);
             // 
-            // gbActions
+            // gbEffects
             // 
-            this.gbActions.Controls.Add(this.radioButton5);
-            this.gbActions.Controls.Add(this.radioButton1);
-            this.gbActions.Controls.Add(this.radioButton2);
-            this.gbActions.Enabled = false;
-            this.gbActions.Location = new System.Drawing.Point(228, 12);
-            this.gbActions.Name = "gbActions";
-            this.gbActions.Size = new System.Drawing.Size(88, 89);
-            this.gbActions.TabIndex = 3;
-            this.gbActions.TabStop = false;
-            this.gbActions.Text = "Audio Effect";
+            this.gbEffects.Controls.Add(this.rbCrossFade);
+            this.gbEffects.Controls.Add(this.rbFadeIn);
+            this.gbEffects.Controls.Add(this.rbFadeOut);
+            this.gbEffects.Enabled = false;
+            this.gbEffects.Location = new System.Drawing.Point(255, 9);
+            this.gbEffects.Name = "gbEffects";
+            this.gbEffects.Size = new System.Drawing.Size(229, 39);
+            this.gbEffects.TabIndex = 3;
+            this.gbEffects.TabStop = false;
+            this.gbEffects.Text = "Audio Effect";
             // 
-            // btnApplyFadeIn
+            // rbCrossFade
             // 
-            this.btnApplyFadeIn.Location = new System.Drawing.Point(60, 152);
-            this.btnApplyFadeIn.Name = "btnApplyFadeIn";
-            this.btnApplyFadeIn.Size = new System.Drawing.Size(75, 23);
-            this.btnApplyFadeIn.TabIndex = 0;
-            this.btnApplyFadeIn.Text = "Apply";
-            this.btnApplyFadeIn.UseVisualStyleBackColor = true;
-            this.btnApplyFadeIn.Click += new System.EventHandler(this.btnApplyFadeIn_Click);
+            this.rbCrossFade.AutoSize = true;
+            this.rbCrossFade.Location = new System.Drawing.Point(148, 19);
+            this.rbCrossFade.Name = "rbCrossFade";
+            this.rbCrossFade.Size = new System.Drawing.Size(75, 17);
+            this.rbCrossFade.TabIndex = 2;
+            this.rbCrossFade.Text = "CrossFade";
+            this.rbCrossFade.UseVisualStyleBackColor = true;
+            this.rbCrossFade.CheckedChanged += new System.EventHandler(this.rbCrossFade_CheckedChanged);
+            // 
+            // rbFadeIn
+            // 
+            this.rbFadeIn.AutoSize = true;
+            this.rbFadeIn.Checked = true;
+            this.rbFadeIn.Location = new System.Drawing.Point(6, 19);
+            this.rbFadeIn.Name = "rbFadeIn";
+            this.rbFadeIn.Size = new System.Drawing.Size(61, 17);
+            this.rbFadeIn.TabIndex = 0;
+            this.rbFadeIn.TabStop = true;
+            this.rbFadeIn.Text = "Fade In";
+            this.rbFadeIn.UseVisualStyleBackColor = true;
+            this.rbFadeIn.CheckedChanged += new System.EventHandler(this.rbFadeIn_CheckedChanged);
+            // 
+            // rbFadeOut
+            // 
+            this.rbFadeOut.AutoSize = true;
+            this.rbFadeOut.Location = new System.Drawing.Point(73, 19);
+            this.rbFadeOut.Name = "rbFadeOut";
+            this.rbFadeOut.Size = new System.Drawing.Size(69, 17);
+            this.rbFadeOut.TabIndex = 1;
+            this.rbFadeOut.Text = "Fade Out";
+            this.rbFadeOut.UseVisualStyleBackColor = true;
+            this.rbFadeOut.CheckedChanged += new System.EventHandler(this.rbFadeOut_CheckedChanged);
+            // 
+            // btnApplyEffect
+            // 
+            this.btnApplyEffect.Enabled = false;
+            this.btnApplyEffect.Location = new System.Drawing.Point(148, 71);
+            this.btnApplyEffect.Name = "btnApplyEffect";
+            this.btnApplyEffect.Size = new System.Drawing.Size(75, 23);
+            this.btnApplyEffect.TabIndex = 0;
+            this.btnApplyEffect.Text = "Apply";
+            this.btnApplyEffect.UseVisualStyleBackColor = true;
+            this.btnApplyEffect.Click += new System.EventHandler(this.btnApplyEffect_Click);
             // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1,
-            this.lblCurrentFile});
+            this.lblCurrentFile,
+            this.toolStripStatusLabel2,
+            this.lblCurrentEffect,
+            this.toolStripStatusLabel3,
+            this.lblEffectOption});
             this.statusStrip1.Location = new System.Drawing.Point(0, 411);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(486, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(500, 22);
             this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 4;
             this.statusStrip1.Text = "statusStrip1";
@@ -353,14 +397,38 @@
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(71, 17);
-            this.toolStripStatusLabel1.Text = "Current File:";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(28, 17);
+            this.toolStripStatusLabel1.Text = "File:";
             // 
             // lblCurrentFile
             // 
             this.lblCurrentFile.Name = "lblCurrentFile";
             this.lblCurrentFile.Size = new System.Drawing.Size(36, 17);
             this.lblCurrentFile.Text = "None";
+            // 
+            // toolStripStatusLabel2
+            // 
+            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(40, 17);
+            this.toolStripStatusLabel2.Text = "Effect:";
+            // 
+            // lblCurrentEffect
+            // 
+            this.lblCurrentEffect.Name = "lblCurrentEffect";
+            this.lblCurrentEffect.Size = new System.Drawing.Size(36, 17);
+            this.lblCurrentEffect.Text = "None";
+            // 
+            // toolStripStatusLabel3
+            // 
+            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
+            this.toolStripStatusLabel3.Size = new System.Drawing.Size(47, 17);
+            this.toolStripStatusLabel3.Text = "Option:";
+            // 
+            // lblEffectOption
+            // 
+            this.lblEffectOption.Name = "lblEffectOption";
+            this.lblEffectOption.Size = new System.Drawing.Size(39, 17);
+            this.lblEffectOption.Text = "Linear";
             // 
             // btnSaveFileAs
             // 
@@ -373,148 +441,130 @@
             this.btnSaveFileAs.UseVisualStyleBackColor = true;
             this.btnSaveFileAs.Click += new System.EventHandler(this.btnSaveFileAs_Click);
             // 
-            // groupBox1
+            // gbEffectOptions
             // 
-            this.groupBox1.Controls.Add(this.radioButton4);
-            this.groupBox1.Controls.Add(this.radioButton3);
-            this.groupBox1.Controls.Add(this.label11);
-            this.groupBox1.Controls.Add(this.label10);
-            this.groupBox1.Controls.Add(this.label9);
-            this.groupBox1.Controls.Add(this.comboBox1);
-            this.groupBox1.Controls.Add(this.numericUpDown2);
-            this.groupBox1.Controls.Add(this.btnApplyFadeIn);
-            this.groupBox1.Controls.Add(this.numericUpDown1);
-            this.groupBox1.Location = new System.Drawing.Point(322, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(150, 182);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Effect Options";
+            this.gbEffectOptions.Controls.Add(this.lblStatus);
+            this.gbEffectOptions.Controls.Add(this.label9);
+            this.gbEffectOptions.Controls.Add(this.rbLogarithmic);
+            this.gbEffectOptions.Controls.Add(this.rbLinear);
+            this.gbEffectOptions.Controls.Add(this.label11);
+            this.gbEffectOptions.Controls.Add(this.label10);
+            this.gbEffectOptions.Controls.Add(this.nuDuration);
+            this.gbEffectOptions.Controls.Add(this.btnApplyEffect);
+            this.gbEffectOptions.Controls.Add(this.nuStart);
+            this.gbEffectOptions.Enabled = false;
+            this.gbEffectOptions.Location = new System.Drawing.Point(255, 54);
+            this.gbEffectOptions.Name = "gbEffectOptions";
+            this.gbEffectOptions.Size = new System.Drawing.Size(229, 140);
+            this.gbEffectOptions.TabIndex = 1;
+            this.gbEffectOptions.TabStop = false;
+            this.gbEffectOptions.Text = "Effect Options";
             // 
-            // radioButton1
+            // lblStatus
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(6, 19);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(61, 17);
-            this.radioButton1.TabIndex = 0;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Fade In";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            // 
-            // radioButton2
-            // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(6, 42);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(69, 17);
-            this.radioButton2.TabIndex = 1;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Fade Out";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            // 
-            // radioButton3
-            // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(6, 14);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(54, 17);
-            this.radioButton3.TabIndex = 2;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "Linear";
-            this.radioButton3.UseVisualStyleBackColor = true;
-            // 
-            // radioButton4
-            // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(6, 37);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(79, 17);
-            this.radioButton4.TabIndex = 3;
-            this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "Logarithmic";
-            this.radioButton4.UseVisualStyleBackColor = true;
-            // 
-            // numericUpDown1
-            // 
-            this.numericUpDown1.Location = new System.Drawing.Point(83, 95);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(52, 20);
-            this.numericUpDown1.TabIndex = 4;
-            // 
-            // numericUpDown2
-            // 
-            this.numericUpDown2.Location = new System.Drawing.Point(83, 121);
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(52, 20);
-            this.numericUpDown2.TabIndex = 5;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(83, 68);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(52, 21);
-            this.comboBox1.TabIndex = 6;
+            this.lblStatus.ForeColor = System.Drawing.Color.Green;
+            this.lblStatus.Location = new System.Drawing.Point(6, 94);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(217, 43);
+            this.lblStatus.TabIndex = 11;
+            this.lblStatus.Text = "Not Applied";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(6, 71);
+            this.label9.Location = new System.Drawing.Point(6, 76);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(49, 13);
-            this.label9.TabIndex = 7;
-            this.label9.Text = "Channel:";
+            this.label9.Size = new System.Drawing.Size(71, 13);
+            this.label9.TabIndex = 10;
+            this.label9.Text = "Effect Status:";
             // 
-            // label10
+            // rbLogarithmic
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(6, 97);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(32, 13);
-            this.label10.TabIndex = 8;
-            this.label10.Text = "Start:";
+            this.rbLogarithmic.AutoSize = true;
+            this.rbLogarithmic.Location = new System.Drawing.Point(6, 37);
+            this.rbLogarithmic.Name = "rbLogarithmic";
+            this.rbLogarithmic.Size = new System.Drawing.Size(79, 17);
+            this.rbLogarithmic.TabIndex = 3;
+            this.rbLogarithmic.Text = "Logarithmic";
+            this.rbLogarithmic.UseVisualStyleBackColor = true;
+            this.rbLogarithmic.CheckedChanged += new System.EventHandler(this.rbLogarithmic_CheckedChanged);
+            // 
+            // rbLinear
+            // 
+            this.rbLinear.AutoSize = true;
+            this.rbLinear.Checked = true;
+            this.rbLinear.Location = new System.Drawing.Point(6, 14);
+            this.rbLinear.Name = "rbLinear";
+            this.rbLinear.Size = new System.Drawing.Size(54, 17);
+            this.rbLinear.TabIndex = 2;
+            this.rbLinear.TabStop = true;
+            this.rbLinear.Text = "Linear";
+            this.rbLinear.UseVisualStyleBackColor = true;
+            this.rbLinear.CheckedChanged += new System.EventHandler(this.rbLinear_CheckedChanged);
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(6, 123);
+            this.label11.Location = new System.Drawing.Point(115, 42);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(50, 13);
             this.label11.TabIndex = 9;
             this.label11.Text = "Duration:";
             // 
-            // radioButton5
+            // label10
             // 
-            this.radioButton5.AutoSize = true;
-            this.radioButton5.Location = new System.Drawing.Point(6, 65);
-            this.radioButton5.Name = "radioButton5";
-            this.radioButton5.Size = new System.Drawing.Size(75, 17);
-            this.radioButton5.TabIndex = 2;
-            this.radioButton5.TabStop = true;
-            this.radioButton5.Text = "CrossFade";
-            this.radioButton5.UseVisualStyleBackColor = true;
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(107, 16);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(58, 13);
+            this.label10.TabIndex = 8;
+            this.label10.Text = "Start Time:";
             // 
-            // button1
+            // nuDuration
             // 
-            this.button1.Location = new System.Drawing.Point(234, 171);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Play";
-            this.button1.UseVisualStyleBackColor = true;
+            this.nuDuration.Location = new System.Drawing.Point(171, 40);
+            this.nuDuration.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nuDuration.Name = "nuDuration";
+            this.nuDuration.Size = new System.Drawing.Size(52, 20);
+            this.nuDuration.TabIndex = 5;
+            this.nuDuration.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // nuStart
+            // 
+            this.nuStart.Location = new System.Drawing.Point(171, 14);
+            this.nuStart.Name = "nuStart";
+            this.nuStart.Size = new System.Drawing.Size(52, 20);
+            this.nuStart.TabIndex = 4;
+            // 
+            // btnPlayAudio
+            // 
+            this.btnPlayAudio.Enabled = false;
+            this.btnPlayAudio.Location = new System.Drawing.Point(174, 12);
+            this.btnPlayAudio.Name = "btnPlayAudio";
+            this.btnPlayAudio.Size = new System.Drawing.Size(75, 23);
+            this.btnPlayAudio.TabIndex = 6;
+            this.btnPlayAudio.Text = "Play";
+            this.btnPlayAudio.UseVisualStyleBackColor = true;
             // 
             // AuEditorMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(486, 433);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(500, 433);
+            this.Controls.Add(this.btnPlayAudio);
             this.Controls.Add(this.pnlWave);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.gbEffectOptions);
             this.Controls.Add(this.btnSaveFileAs);
             this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.gbActions);
+            this.Controls.Add(this.gbEffects);
             this.Controls.Add(this.gbFileInfo);
             this.Controls.Add(this.btnOpenFile);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -523,14 +573,14 @@
             this.Text = "Au Editor";
             this.gbFileInfo.ResumeLayout(false);
             this.gbFileInfo.PerformLayout();
-            this.gbActions.ResumeLayout(false);
-            this.gbActions.PerformLayout();
+            this.gbEffects.ResumeLayout(false);
+            this.gbEffects.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
+            this.gbEffectOptions.ResumeLayout(false);
+            this.gbEffectOptions.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nuDuration)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nuStart)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -560,26 +610,30 @@
         private System.Windows.Forms.Label lblMagicNumber;
         private System.Windows.Forms.Label lblIsValid;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.GroupBox gbActions;
+        private System.Windows.Forms.GroupBox gbEffects;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel lblCurrentFile;
         private System.Windows.Forms.Panel pnlWave;
         private System.Windows.Forms.Button btnSaveFileAs;
-        private System.Windows.Forms.Button btnApplyFadeIn;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button btnApplyEffect;
+        private System.Windows.Forms.GroupBox gbEffectOptions;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.NumericUpDown nuDuration;
+        private System.Windows.Forms.NumericUpDown nuStart;
+        private System.Windows.Forms.RadioButton rbLogarithmic;
+        private System.Windows.Forms.RadioButton rbLinear;
+        private System.Windows.Forms.RadioButton rbFadeOut;
+        private System.Windows.Forms.RadioButton rbFadeIn;
+        private System.Windows.Forms.RadioButton rbCrossFade;
+        private System.Windows.Forms.Button btnPlayAudio;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
+        private System.Windows.Forms.ToolStripStatusLabel lblCurrentEffect;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
+        private System.Windows.Forms.ToolStripStatusLabel lblEffectOption;
+        private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.RadioButton radioButton4;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton5;
-        private System.Windows.Forms.Button button1;
     }
 }
 
