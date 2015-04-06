@@ -15,7 +15,13 @@ namespace AuEditor
         // FadeOut: 1.0f - GetLogarithmicValue(i - startingSample, numberOfSamples);
         public static float GetLogarithmicValue(int position, int total)
         {
-            return 1.0f;
+            var a = position;
+            var b = total - position;
+            var f = (float)a / (a + b);
+            var x = Math.Pow(total, f);
+
+            var val =  Math.Pow(10, f);
+            return (float)val;
         }
 
         public static bool FadeIn(AuFile inputFile, Func<int, int, float> filter,
@@ -80,19 +86,20 @@ namespace AuEditor
             if (startingSample + numberOfSamples > inputFile.Header.SamplesPerChannel)
                 return false;
 
+            // Per Channel or Per Channels?
             for (var i = startingSample; i < startingSample + numberOfSamples; i++)
             {
-                var fadeInMult = filter(i - startingSample, numberOfSamples);
+                var fadeOutMult = 1.0f - filter(i - startingSample, numberOfSamples);
                 var oldVal = inputFile.Channels[0][i];
-                var newVal = (int)(oldVal * fadeInMult);
+                var newVal = (int)(oldVal * fadeOutMult);
                 inputFile.Channels[0][i] = newVal;
             }
 
             for (var i = startingSample; i < startingSample + numberOfSamples; i++)
             {
-                var fadeOutMult = 1.0f - filter(i - startingSample, numberOfSamples);
+                var fadeInMult = filter(i - startingSample, numberOfSamples);
                 var oldVal = inputFile.Channels[1][i];
-                var newVal = (int)(oldVal * fadeOutMult);
+                var newVal = (int)(oldVal * fadeInMult);
                 inputFile.Channels[1][i] = newVal;
             }
             return true;

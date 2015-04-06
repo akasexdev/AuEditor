@@ -251,5 +251,10 @@ namespace AuEditor
 
             nuDuration.Value = (decimal)(_inputFile.Header.Duration - ((float) nuStart.Value));
         }
+
+        private void btnPlayAudio_Click(object sender, System.EventArgs e)
+        {
+
+        }
     }
 }

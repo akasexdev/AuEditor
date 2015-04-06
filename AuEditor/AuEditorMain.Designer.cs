@@ -65,6 +65,7 @@
             this.lblEffectOption = new System.Windows.Forms.ToolStripStatusLabel();
             this.btnSaveFileAs = new System.Windows.Forms.Button();
             this.gbEffectOptions = new System.Windows.Forms.GroupBox();
+            this.btnSetMaxDuration = new System.Windows.Forms.Button();
             this.lblStatus = new System.Windows.Forms.Label();
             this.rbLogarithmic = new System.Windows.Forms.RadioButton();
             this.rbLinear = new System.Windows.Forms.RadioButton();
@@ -73,7 +74,6 @@
             this.nuDuration = new System.Windows.Forms.NumericUpDown();
             this.nuStart = new System.Windows.Forms.NumericUpDown();
             this.btnPlayAudio = new System.Windows.Forms.Button();
-            this.btnSetMaxDuration = new System.Windows.Forms.Button();
             this.gbFileInfo.SuspendLayout();
             this.gbEffects.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -389,7 +389,7 @@
             this.lblEffectOption});
             this.statusStrip1.Location = new System.Drawing.Point(0, 411);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(630, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(498, 22);
             this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 4;
             this.statusStrip1.Text = "statusStrip1";
@@ -459,6 +459,16 @@
             this.gbEffectOptions.TabIndex = 1;
             this.gbEffectOptions.TabStop = false;
             this.gbEffectOptions.Text = "Effect Options";
+            // 
+            // btnSetMaxDuration
+            // 
+            this.btnSetMaxDuration.Location = new System.Drawing.Point(118, 68);
+            this.btnSetMaxDuration.Name = "btnSetMaxDuration";
+            this.btnSetMaxDuration.Size = new System.Drawing.Size(105, 23);
+            this.btnSetMaxDuration.TabIndex = 12;
+            this.btnSetMaxDuration.Text = "Set Max Duration";
+            this.btnSetMaxDuration.UseVisualStyleBackColor = true;
+            this.btnSetMaxDuration.Click += new System.EventHandler(this.btnSetMaxDuration_Click);
             // 
             // lblStatus
             // 
@@ -557,22 +567,13 @@
             this.btnPlayAudio.TabIndex = 6;
             this.btnPlayAudio.Text = "Play";
             this.btnPlayAudio.UseVisualStyleBackColor = true;
-            // 
-            // btnSetMaxDuration
-            // 
-            this.btnSetMaxDuration.Location = new System.Drawing.Point(118, 68);
-            this.btnSetMaxDuration.Name = "btnSetMaxDuration";
-            this.btnSetMaxDuration.Size = new System.Drawing.Size(105, 23);
-            this.btnSetMaxDuration.TabIndex = 12;
-            this.btnSetMaxDuration.Text = "Set Max Duration";
-            this.btnSetMaxDuration.UseVisualStyleBackColor = true;
-            this.btnSetMaxDuration.Click += new System.EventHandler(this.btnSetMaxDuration_Click);
+            this.btnPlayAudio.Click += new System.EventHandler(this.btnPlayAudio_Click);
             // 
             // AuEditorMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(630, 433);
+            this.ClientSize = new System.Drawing.Size(498, 433);
             this.Controls.Add(this.btnPlayAudio);
             this.Controls.Add(this.pnlWave);
             this.Controls.Add(this.gbEffectOptions);
@@ -584,7 +585,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "AuEditorMain";
-            this.Text = "Au Editor";
+            this.Text = "Au File Editor";
             this.gbFileInfo.ResumeLayout(false);
             this.gbFileInfo.PerformLayout();
             this.gbEffects.ResumeLayout(false);
