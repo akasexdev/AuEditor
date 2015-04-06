@@ -146,28 +146,22 @@ namespace AuEditor
 
         private void pnlWave_Paint(object sender, PaintEventArgs e)
         {
-            AuFileRenderer.Render(pnlWave.Width, pnlWave.Height, _inputFile, e.Graphics);
+            AuFileHelper.RenderWaves(_inputFile, e.Graphics, pnlWave.Width, pnlWave.Height);
         }
 
         private void rbFadeIn_CheckedChanged(object sender, System.EventArgs e)
         {
             _effectKind = "FadeIn";
-            nuStart.Value = 0;
-            nuDuration.Value = 1;
         }
 
         private void rbFadeOut_CheckedChanged(object sender, System.EventArgs e)
         {
             _effectKind = "FadeOut";
-            nuStart.Value = 0;
-            nuDuration.Value = 1;
         }
 
         private void rbCrossFade_CheckedChanged(object sender, System.EventArgs e)
         {
             _effectKind = "CrossFade";
-            nuStart.Value = 0;
-            nuDuration.Value = 1;
         }
 
         private void rbLinear_CheckedChanged(object sender, System.EventArgs e)
@@ -245,7 +239,10 @@ namespace AuEditor
 
         private void btnPlayAudio_Click(object sender, System.EventArgs e)
         {
+            if (_inputFile == null || !_inputFile.Header.IsValid)
+                return;
 
+            AuFileHelper.PlayFile(_inputFile);
         }
     }
 }

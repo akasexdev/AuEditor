@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Media;
 
 namespace AuEditor
 {
-    public static class AuFileRenderer
+    public static class AuFileHelper
     {
-        public static void Render(int width, int height, AuFile inputFile, Graphics graphics)
+        public static void RenderWaves(AuFile inputFile, Graphics graphics, int width, int height)
         {
             if (inputFile == null || !inputFile.Header.IsValid)
                 return;
@@ -55,6 +57,27 @@ namespace AuEditor
 
                     graphics.DrawLine(Pens.Blue, x, lowValue, x, highValue);
                 }
+            }
+        }
+
+        public static void PlayFile(AuFile inputFile)
+        {
+            if (inputFile == null || !inputFile.Header.IsValid)
+                return;
+
+            // Export current samples to a WAV file
+            using (var exportStream = new FileStream("play_output.wav", FileMode.Create))
+            {
+                using (var writer = new AuFileWriter(exportStream))
+                {
+                    writer.ExportToWav(inputFile);
+                }
+            }
+
+            // Load and Play generated WAV file
+            using (var myPlayer = new SoundPlayer("play_output.wav"))
+            {
+                myPlayer.Play();
             }
         }
     }

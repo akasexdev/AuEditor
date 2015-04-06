@@ -56,7 +56,7 @@
     <Compile Include="AuFileData.cs" />
     <Compile Include="AuFileHeader.cs" />
     <Compile Include="AuFileReader.cs" />
-    <Compile Include="AuFileRenderer.cs" />
+    <Compile Include="AuFileHelper.cs" />
     <Compile Include="AuFileWriter.cs" />
     <Compile Include="ByteHelper.cs" />
     <Compile Include="Program.cs" />
