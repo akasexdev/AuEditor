@@ -92,6 +92,7 @@
     <Content Include="Samples\sample24bit.au" />
     <Content Include="Samples\sample32bit.au" />
     <Content Include="Samples\sample8bit.au" />
+    <Content Include="Screenshot.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
