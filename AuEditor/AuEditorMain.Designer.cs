@@ -66,7 +66,6 @@
             this.btnSaveFileAs = new System.Windows.Forms.Button();
             this.gbEffectOptions = new System.Windows.Forms.GroupBox();
             this.lblStatus = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             this.rbLogarithmic = new System.Windows.Forms.RadioButton();
             this.rbLinear = new System.Windows.Forms.RadioButton();
             this.label11 = new System.Windows.Forms.Label();
@@ -74,6 +73,7 @@
             this.nuDuration = new System.Windows.Forms.NumericUpDown();
             this.nuStart = new System.Windows.Forms.NumericUpDown();
             this.btnPlayAudio = new System.Windows.Forms.Button();
+            this.btnSetMaxDuration = new System.Windows.Forms.Button();
             this.gbFileInfo.SuspendLayout();
             this.gbEffects.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -370,7 +370,7 @@
             // btnApplyEffect
             // 
             this.btnApplyEffect.Enabled = false;
-            this.btnApplyEffect.Location = new System.Drawing.Point(148, 71);
+            this.btnApplyEffect.Location = new System.Drawing.Point(6, 68);
             this.btnApplyEffect.Name = "btnApplyEffect";
             this.btnApplyEffect.Size = new System.Drawing.Size(75, 23);
             this.btnApplyEffect.TabIndex = 0;
@@ -389,7 +389,7 @@
             this.lblEffectOption});
             this.statusStrip1.Location = new System.Drawing.Point(0, 411);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(500, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(630, 22);
             this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 4;
             this.statusStrip1.Text = "statusStrip1";
@@ -443,8 +443,8 @@
             // 
             // gbEffectOptions
             // 
+            this.gbEffectOptions.Controls.Add(this.btnSetMaxDuration);
             this.gbEffectOptions.Controls.Add(this.lblStatus);
-            this.gbEffectOptions.Controls.Add(this.label9);
             this.gbEffectOptions.Controls.Add(this.rbLogarithmic);
             this.gbEffectOptions.Controls.Add(this.rbLinear);
             this.gbEffectOptions.Controls.Add(this.label11);
@@ -462,21 +462,13 @@
             // 
             // lblStatus
             // 
+            this.lblStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblStatus.ForeColor = System.Drawing.Color.Green;
-            this.lblStatus.Location = new System.Drawing.Point(6, 94);
+            this.lblStatus.Location = new System.Drawing.Point(6, 97);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(217, 43);
+            this.lblStatus.Size = new System.Drawing.Size(217, 40);
             this.lblStatus.TabIndex = 11;
             this.lblStatus.Text = "Not Applied";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(6, 76);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(71, 13);
-            this.label9.TabIndex = 10;
-            this.label9.Text = "Effect Status:";
             // 
             // rbLogarithmic
             // 
@@ -522,6 +514,12 @@
             // 
             // nuDuration
             // 
+            this.nuDuration.DecimalPlaces = 2;
+            this.nuDuration.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
             this.nuDuration.Location = new System.Drawing.Point(171, 40);
             this.nuDuration.Minimum = new decimal(new int[] {
             1,
@@ -539,6 +537,12 @@
             // 
             // nuStart
             // 
+            this.nuStart.DecimalPlaces = 2;
+            this.nuStart.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
             this.nuStart.Location = new System.Drawing.Point(171, 14);
             this.nuStart.Name = "nuStart";
             this.nuStart.Size = new System.Drawing.Size(52, 20);
@@ -554,11 +558,21 @@
             this.btnPlayAudio.Text = "Play";
             this.btnPlayAudio.UseVisualStyleBackColor = true;
             // 
+            // btnSetMaxDuration
+            // 
+            this.btnSetMaxDuration.Location = new System.Drawing.Point(118, 68);
+            this.btnSetMaxDuration.Name = "btnSetMaxDuration";
+            this.btnSetMaxDuration.Size = new System.Drawing.Size(105, 23);
+            this.btnSetMaxDuration.TabIndex = 12;
+            this.btnSetMaxDuration.Text = "Set Max Duration";
+            this.btnSetMaxDuration.UseVisualStyleBackColor = true;
+            this.btnSetMaxDuration.Click += new System.EventHandler(this.btnSetMaxDuration_Click);
+            // 
             // AuEditorMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(500, 433);
+            this.ClientSize = new System.Drawing.Size(630, 433);
             this.Controls.Add(this.btnPlayAudio);
             this.Controls.Add(this.pnlWave);
             this.Controls.Add(this.gbEffectOptions);
@@ -633,7 +647,7 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
         private System.Windows.Forms.ToolStripStatusLabel lblEffectOption;
         private System.Windows.Forms.Label lblStatus;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button btnSetMaxDuration;
     }
 }
 

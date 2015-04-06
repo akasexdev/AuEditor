@@ -31,12 +31,12 @@ namespace AuEditor
             }
         }
 
-        public int Duration
+        public float Duration
         {
             get
             {
                 if (DataSize > 0 && Channels > 0 && BytesPerSample > 0)
-                    return ((int)DataSize / (int)(SampleRate * Channels * BytesPerSample));
+                    return ((float)DataSize / (int)(SampleRate * Channels * BytesPerSample));
                 return 0;
             }
         }

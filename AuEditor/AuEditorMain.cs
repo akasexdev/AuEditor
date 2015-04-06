@@ -103,8 +103,8 @@ namespace AuEditor
                 gbEffectOptions.Enabled = true;
                 btnApplyEffect.Enabled = true;
                 btnPlayAudio.Enabled = true;
-                nuStart.Maximum = _inputFile.Header.Duration;
-                nuDuration.Maximum = _inputFile.Header.Duration;
+                nuStart.Maximum = (decimal) _inputFile.Header.Duration;
+                nuDuration.Maximum = (decimal)_inputFile.Header.Duration;
             }
             
             rbFadeIn.Checked = true;
@@ -191,48 +191,65 @@ namespace AuEditor
 
         private void btnApplyEffect_Click(object sender, System.EventArgs e)
         {
-            var startPosition = (int) nuStart.Value;
-            var duration = (int) nuDuration.Value;
+            var startPosition = (float) nuStart.Value;
+            var duration = (float) nuDuration.Value;
 
-            if (startPosition + duration > _inputFile.Header.Duration || duration == 0)
+            if (startPosition + duration > _inputFile.Header.Duration)
             {
                 lblStatus.ForeColor = Color.Red;
                 lblStatus.Text = "Length of the effect is bigger than the file duration. Please, validate Start Time and Duration parameters.";
                 return;
             }
 
+            var result = false;
             if (_effectKind == "FadeIn")
             {
                 if (_useLogarithmic)
-                    AudioHelper.FadeIn(_inputFile, AudioHelper.GetLogarithmicValue,
+                    result = AudioHelper.FadeIn(_inputFile, AudioHelper.GetLogarithmicValue,
                         startPosition, duration);
                 else
-                    AudioHelper.FadeIn(_inputFile, AudioHelper.GetLinearValue,
+                    result = AudioHelper.FadeIn(_inputFile, AudioHelper.GetLinearValue,
                         startPosition, duration);
             }
             else if (_effectKind == "FadeOut")
             {
                 if (_useLogarithmic)
-                    AudioHelper.FadeOut(_inputFile, AudioHelper.GetLogarithmicValue,
+                    result = AudioHelper.FadeOut(_inputFile, AudioHelper.GetLogarithmicValue,
                         startPosition, duration);
                 else
-                    AudioHelper.FadeOut(_inputFile, AudioHelper.GetLinearValue,
+                    result = AudioHelper.FadeOut(_inputFile, AudioHelper.GetLinearValue,
                         startPosition, duration);
             }
             else if (_effectKind == "CrossFade")
             {
                 if (_useLogarithmic)
-                    AudioHelper.CrossFade(_inputFile, AudioHelper.GetLogarithmicValue,
+                    result = AudioHelper.CrossFade(_inputFile, AudioHelper.GetLogarithmicValue,
                         startPosition, duration);
                 else
-                    AudioHelper.CrossFade(_inputFile, AudioHelper.GetLinearValue,
+                    result = AudioHelper.CrossFade(_inputFile, AudioHelper.GetLinearValue,
                         startPosition, duration);
             }
 
-            lblStatus.ForeColor = Color.Green;
-            lblStatus.Text = string.Format("{0} Effect was applied", _effectKind);
-            
+            if (result)
+            {
+                lblStatus.ForeColor = Color.Green;
+                lblStatus.Text = string.Format("{0} Effect was applied", _effectKind);
+            }
+            else
+            {
+                lblStatus.ForeColor = Color.Red;
+                lblStatus.Text = string.Format("Failed to apply {0} Effect", _effectKind);
+            }
+
             pnlWave.Refresh();
+        }
+
+        private void btnSetMaxDuration_Click(object sender, System.EventArgs e)
+        {
+            if (_inputFile == null || !_inputFile.Header.IsValid)
+                return;
+
+            nuDuration.Value = (decimal)(_inputFile.Header.Duration - ((float) nuStart.Value));
         }
     }
 }
