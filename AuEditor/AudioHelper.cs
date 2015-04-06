@@ -86,21 +86,29 @@ namespace AuEditor
             if (startingSample + numberOfSamples > inputFile.Header.SamplesPerChannel)
                 return false;
 
-            // Per Channel or Per Channels?
+            // Use an equal-power crossfading curve:
             for (var i = startingSample; i < startingSample + numberOfSamples; i++)
             {
-                var fadeOutMult = 1.0f - filter(i - startingSample, numberOfSamples);
-                var oldVal = inputFile.Channels[0][i];
-                var newVal = (int)(oldVal * fadeOutMult);
-                inputFile.Channels[0][i] = newVal;
+                var x = (float)(i - startingSample) / numberOfSamples;
+                var mult = Math.Cos(x * 0.5f * Math.PI);
+                inputFile.Channels[0][i] = (int)(inputFile.Channels[0][i] * mult);
+
+                //var fadeOutMult = 1.0f - filter(i - startingSample, numberOfSamples);
+                //var oldVal = inputFile.Channels[0][i];
+                //var newVal = (int)(oldVal * fadeOutMult);
+                //inputFile.Channels[0][i] = newVal;
             }
 
             for (var i = startingSample; i < startingSample + numberOfSamples; i++)
             {
-                var fadeInMult = filter(i - startingSample, numberOfSamples);
-                var oldVal = inputFile.Channels[1][i];
-                var newVal = (int)(oldVal * fadeInMult);
-                inputFile.Channels[1][i] = newVal;
+                var x = (float)(i - startingSample) / numberOfSamples;
+                var mult = Math.Cos((1.0f - x) * 0.5f * Math.PI);
+                inputFile.Channels[1][i] = (int)(inputFile.Channels[1][i] * mult);
+
+                //var fadeInMult = filter(i - startingSample, numberOfSamples);
+                //var oldVal = inputFile.Channels[1][i];
+                //var newVal = (int)(oldVal * fadeInMult);
+                //inputFile.Channels[1][i] = newVal;
             }
             return true;
         }
